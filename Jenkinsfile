@@ -50,8 +50,8 @@ pipeline{
 	  steps{
 		  withCredentials([gitUsernamePassword(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
 		  sh '''
-		  git config user.email "mittal.gaurav1996@gmail.com"
-		  git config user.name "Gaurav"
+		  git config user.email "mittalgaurav619@gmail.com"
+		  git config user.name "mittal0706"
 		  BUILD_NUMBER=${BUILD_NUMBER}
                   sed -i "s/v1/${BUILD_NUMBER}/g" deploy.yml
                     git add deploy.yml
