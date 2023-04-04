@@ -44,15 +44,16 @@ pipeline{
 	  stage('update Deployment File'){
 	  
 	  steps{
-		  withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
+		  
 		  sh '''
 		  git config user.email "mittalgaurav619@gmail.com"
 		  git config user.name "mittal0706"
 		  BUILD_NUMBER=${BUILD_NUMBER}
                   sed -i "s/v1/${BUILD_NUMBER}/g" deploy.yml
-                    git add deploy.yml
-                    git commit -m "Update deployment image to version ${BUILD_NUMBER}"
-                    git push "https://github.com/mittal0706/flask_app.git" HEAD:main
+                  git add deploy.yml
+                  git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                  withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]){
+		  git push "https://github.com/mittal0706/flask_app.git" HEAD:main
                 '''
 		}
 	  }
