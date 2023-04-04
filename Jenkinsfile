@@ -52,6 +52,7 @@ pipeline{
                   sed -i "s/v1/${BUILD_NUMBER}/g" deploy.yml
                     git add deploy.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+		    git remote -u origin main
                     git push "https://github.com/mittal0706/flask_app.git" main
                 '''
 		}
