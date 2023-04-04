@@ -42,17 +42,15 @@ pipeline{
     }
     stage('Checkout K8S manifest SCM'){
             steps {
-                git credentialsId: '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', 
-                url: 'https://github.com/mittal0706/cicd-demo-manifests-repo.git',
-                branch: 'main'
+                git branch: 'main',
+                url: 'https://github.com/mittal0706/cicd-demo-manifests-repo.git'
             }
         }
         
         stage('Update K8S manifest & push to Repo'){
             steps {
                 script{
-                    withCredentials([usernamePassword(credentialsId: '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', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                        sh '''
+                       sh '''
                         cat deploy.yaml
                         sed -i '' "s/32/${BUILD_NUMBER}/g" deploy.yaml
                         cat deploy.yaml
