@@ -54,10 +54,7 @@ pipeline{
                         cat deploy.yaml
                         sed -i 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' deploy.yaml
                         cat deploy.yaml
-                        git add deploy.yaml
-                        git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
-                        git remote -v
-                        git push https://github.com/mittal0706/cicd-demo-manifests-repo.git HEAD:main
+                        
                         '''                      
                 }
             }
