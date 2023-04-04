@@ -19,8 +19,7 @@ pipeline{
     stage('Unit test'){
       steps{
         script{
-          'sh 'pytest tests/'
-
+          sh 'pytest tests/'
         }
       }
     }
