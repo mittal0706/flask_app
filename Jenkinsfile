@@ -11,7 +11,8 @@ pipeline{
     stage('Git Checkout'){
       steps{
         script{
-          git branch: 'main', url: 'https://github.com/mittal0706/flask_app.git'
+          withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
+ 	  }
         }
       }
     }
@@ -51,6 +52,7 @@ pipeline{
             steps {
                 script{
                        sh '''
+		       withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
                         cat deploy.yaml
                         sed -i 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' deploy.yaml
                         cat deploy.yaml
@@ -60,6 +62,7 @@ pipeline{
                         git push https://github.com/mittal0706/cicd-demo-manifests-repo.git HEAD:main
                        '''                      
                 }
+	    }	    
             }
         }
   }
