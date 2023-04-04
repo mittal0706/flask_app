@@ -42,10 +42,6 @@ pipeline{
       }
     }
 	  stage('update Deployment File'){
-		  environment {
-		  	GIT_REPO_NAME = "flask_app"
-			GIT_USER_NAME = "mittal0706"
-		  }
 	  
 	  steps{
 		  withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
@@ -56,7 +52,7 @@ pipeline{
                   sed -i "s/v1/${BUILD_NUMBER}/g" deploy.yml
                     git add deploy.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
-                    git push "https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git" main
+                    git push "https://github.com/mittal0706/flask_app.git" main
                 '''
 		}
 	  }
