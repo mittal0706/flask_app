@@ -54,7 +54,7 @@ pipeline{
                   git commit -m "Update deployment image to version ${BUILD_NUMBER}"
 		  '''
                   withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]){
-		  sh 'git push "https://github.com/mittal0706/flask_app.git" HEAD:main'
+		  sh 'git push "https://github.com/mittal0706/flask_app.git" HEAD:dev'
 		}
 	  }
 	 }
