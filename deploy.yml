@@ -16,20 +16,20 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: mittal0706/flask_app:5
+        image: mittal0706/flask_app:${BUILD_NUMBER}
         ports:
         - containerPort: 5000
  
 ---
 
-apiVersion: 3
+apiVersion: v1
 kind: Service
 metadata:
   name: flask-app-service
 spec:
   type: LoadBalancer
   selector:
-    app: flsk-app
+    app: flask-app
   ports:
     - protocol: TCP
       port: 80
