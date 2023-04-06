@@ -59,5 +59,14 @@ pipeline{
 	  }
 	 }
 	  }
+	  stage('deploy to EKS'){
+		  steps{
+			  script{
+			  	withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubenetes', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+				sh 'kubectl apply -f deploy.yml'
+				}
+			  }
+		  }
+	  }
   }
 }
