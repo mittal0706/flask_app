@@ -49,15 +49,24 @@ pipeline{
 		  git config user.email "mittalgaurav619@gmail.com"
 		  git config user.name "mittal0706"
 		  BUILD_NUMBER=${BUILD_NUMBER}
-                  sed -i "s/v1/${BUILD_NUMBER}/g" deploy.yml
+                  sed -i "s/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g" deploy.yml
                   git add deploy.yml
                   git commit -m "Update deployment image to version ${BUILD_NUMBER}"
 		  '''
                   withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]){
-		  sh 'git push "https://github.com/mittal0706/flask_app.git" HEAD:main'
+		  sh 'git push "https://github.com/mittal0706/flask_app.git" HEAD:dev'
 		}
 	  }
 	 }
+	  }
+	  stage('deploy to EKS'){
+		  steps{
+			  script{
+			  	withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubenetes', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+				sh 'kubectl apply -f deploy.yml'
+				}
+			  }
+		  }
 	  }
   }
 }
