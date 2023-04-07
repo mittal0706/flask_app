@@ -10,6 +10,7 @@ install docker on your EC2 instance
 ## Setup EKS
 
 This Lab is using Jenkins EC2 instance. Jenkins EC2 instance needs to have following configured:
+![jenkins output](https://user-images.githubusercontent.com/121662892/230562966-0061afbf-2246-47e5-967b-ce84e5c1a5c7.png)
 
 ## Install AWS CLI
 - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" 
@@ -57,4 +58,13 @@ step 5: Copy the content of kubeconfig file and save as a text file
 step 1: set credential of github, docker and EKS cluster to jenkins using manage jenkins --> manage credential --> add credentials
 step 2: Create Job using pipeline 
 step 3: give the path of github, branch name, and jenkinsfile location
-step 4: you can take here dev branch first, to deploy application in dev Environment for testing purpose 
+step 4: you can take here dev branch first, to deploy application in dev Environment for testing purpose
+![kubernetes](https://user-images.githubusercontent.com/121662892/230562690-8ac873a6-8a13-4d5c-ad79-6fff9d6c3c66.png)
+
+
+
+![jenkins output](https://user-images.githubusercontent.com/121662892/230563087-1544cda6-236c-46d8-9715-00c3f8482d3d.png)
+
+
+
+![output](https://user-images.githubusercontent.com/121662892/230563126-996c9558-1252-4394-956a-b03ac0690db4.png)
